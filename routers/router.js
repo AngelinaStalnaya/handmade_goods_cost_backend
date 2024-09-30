@@ -1,5 +1,5 @@
 import Router from "express";
-import CalculationController from "./CalculationController.js";
+import CalculationController from "../controllers/CalculationController.js";
 const router = new Router();
 
 router.post("/calculations", CalculationController.create);

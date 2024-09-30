@@ -1,4 +1,4 @@
-import Calculation from "./Calculation.js";
+import Calculation from "../models/Calculation.js";
 
 class CalculationService {
   async create(calculation) {
@@ -10,7 +10,7 @@ class CalculationService {
     const calculations = await Calculation.find();
     return calculations;
   }
-
+ 
   async getOne(id) {
     if (!id) {
       throw new Error('The is no ID');
@@ -41,3 +41,4 @@ class CalculationService {
 }
 
 export default new CalculationService();
+

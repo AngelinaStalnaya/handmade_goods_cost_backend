@@ -1,5 +1,4 @@
-import Calculation from "./Calculation.js";
-import CalculationService from "./CalculationService.js";
+import CalculationService from "../services/CalculationService.js";
 
 class CalculationController {
   async create(req, res) {

@@ -11,7 +11,7 @@ const Calculation = new mongoose.Schema({
     additional_costs: {type: Number},
     equipment: {type: Number},
     tax_rate: {type: Number},
-
+    date: {type: String, required: true}
 });
 
 export default mongoose.model('Calculation', Calculation);
