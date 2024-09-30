@@ -1,22 +1,11 @@
 import Router from "express";
-import Calculation from "./Calculation.js";
-
+import CalculationController from "./CalculationController.js";
 const router = new Router();
 
-router.post("/", async (req, res) => {
-  try {
-    const { author, name, hours, payment, materials } = req.body;
-    const calculation = await Calculation.create({
-      author,
-      name,
-      hours,
-      payment,
-      materials,
-    });
-    res.json(calculation);
-  } catch (error) {
-    res.status(500).json(error);
-  }
-});
+router.post("/calculations", CalculationController.create);
+router.get("/calculations", CalculationController.getAll);
+router.get('/calculations/:id', CalculationController.getOne)
+router.put('/calculations/:id', CalculationController.update)
+router.delete('/calculations/:id', CalculationController.delete)
 
 export default router;
