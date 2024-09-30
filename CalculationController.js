@@ -1,16 +1,10 @@
 import Calculation from "./Calculation.js";
+import CalculationService from "./CalculationService.js";
 
 class CalculationController {
   async create(req, res) {
     try {
-      const { author, name, hours, payment, materials } = req.body;
-      const calculation = await Calculation.create({
-        author,
-        name,
-        hours,
-        payment,
-        materials,
-      });
+      const calculation = await CalculationService.create(req.body);
       res.json(calculation);
     } catch (error) {
       res.status(500).json(error.message);
@@ -19,7 +13,7 @@ class CalculationController {
 
   async getAll(req, res) {
     try {
-      const calculations = await Calculation.find();
+      const calculations = await CalculationService.getAll();
       return res.json(calculations);
     } catch (error) {
       res.status(500).json(error.message);
@@ -28,11 +22,7 @@ class CalculationController {
 
   async getOne(req, res) {
     try {
-      const { id } = req.params;
-      if (!id) {
-        res.status(400).json({ message: "There is no id" });
-      }
-      const calculationData = await Calculation.findById(id);
+      const calculationData = await CalculationService.getOne(req.params.id);
       return res.json(calculationData);
     } catch (error) {
       res.status(500).json(error.message);
@@ -41,11 +31,7 @@ class CalculationController {
 
   async update(req, res) {
     try {
-      const calculation = req.body;
-      if (!calculation._id) {
-        res.status(400).json({ message: "There is no id" });
-      }
-      const updatedCalculation = await Calculation.findByIdAndUpdate(calculation._id, calculation, {new: true})
+      const updatedCalculation = await CalculationService.update(req.body);
       return res.json(updatedCalculation);
     } catch (error) {
       res.status(500).json(error.message);
@@ -54,11 +40,7 @@ class CalculationController {
 
   async delete(req, res) {
     try {
-        const {id} = req.params;
-        if (!id) {
-            res.status(400).json({ message: "There is no id" });
-          }
-        const deletedCalculation = await Calculation.findByIdAndDelete(id);
+        const deletedCalculation = await CalculationService.delete(req.params.id);
         return res.json(deletedCalculation);
     } catch (error) {
       res.status(500).json(error.message);
