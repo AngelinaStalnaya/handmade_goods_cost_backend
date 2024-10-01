@@ -6,15 +6,16 @@ class CalculationService {
     return createdCalculation;
 }
 
-  async getAll() {
-    const calculations = await Calculation.find();
+  async getAll(id) {
+    if (!id) {
+      throw new Error('The is no ID');
+    }
+    const calculations = await Calculation.findById(id);
     return calculations;
   }
  
   async getOne(id) {
-    if (!id) {
-      throw new Error('The is no ID');
-    }
+    
     const calculationData = await Calculation.findById(id);
     return calculationData;
   }

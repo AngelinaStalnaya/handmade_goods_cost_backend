@@ -12,7 +12,7 @@ class CalculationController {
 
   async getAll(req, res) {
     try {
-      const calculations = await CalculationService.getAll();
+      const calculations = await CalculationService.getAll(req.params.id);
       return res.json(calculations);
     } catch (error) {
       res.status(500).json(error.message);
