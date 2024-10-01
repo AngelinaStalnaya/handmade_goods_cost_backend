@@ -8,21 +8,23 @@ class CalculationService {
 
   async getAll(id) {
     if (!id) {
-      throw new Error('The is no ID');
+      throw new Error('There is no ID');
     }
     const calculations = await Calculation.findById(id);
     return calculations;
   }
  
   async getOne(id) {
-    
+    if (!calculation._id) {
+      throw new Error('There is no ID');
+    }
     const calculationData = await Calculation.findById(id);
     return calculationData;
   }
 
   async update(calculation) {
     if (!calculation._id) {
-      throw new Error('The is no ID');
+      throw new Error('There is no ID');
     }
     const updatedCalculation = await Calculation.findByIdAndUpdate(
       calculation._id,
@@ -34,7 +36,7 @@ class CalculationService {
 
   async delete(id) {
     if (!id) {
-        throw new Error('The is no ID');
+        throw new Error('There is no ID');
     }
     const deletedCalculation = await Calculation.findByIdAndDelete(id);
     return deletedCalculation;
