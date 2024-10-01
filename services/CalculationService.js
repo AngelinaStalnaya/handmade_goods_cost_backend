@@ -15,7 +15,7 @@ class CalculationService {
   }
  
   async getOne(id) {
-    if (!calculation._id) {
+    if (!id) {
       throw new Error('There is no ID');
     }
     const calculationData = await Calculation.findById(id);
