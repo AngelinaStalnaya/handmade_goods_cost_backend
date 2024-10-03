@@ -36,6 +36,15 @@ class UserController {
       res.status(500).json(error.message);
     }
   }
+
+  async authUser(req, res) {
+    try {
+        const authedUser = await UserService.authUser(req.body);
+        return res.json(authedUser);
+    } catch (error) {
+      res.status(500).json(error.message);
+    }
+  }
 }
 
 export default new UserController();

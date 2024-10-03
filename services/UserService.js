@@ -33,6 +33,14 @@ class UserService {
     const deletedUser = await User.findByIdAndDelete(id);
     return deletedUser;
   }
+
+  async authUser(authData) {
+    if (!authData) {
+        throw new Error('There is no auth data');
+    }
+    const authedUserUser = await User.findOne(authData);
+    return authedUserUser;
+  }
 }
 
 export default new UserService();
