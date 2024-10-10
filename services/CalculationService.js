@@ -6,11 +6,11 @@ class CalculationService {
     return createdCalculation;
 }
 
-  async getAll(id) {
-    if (!id) {
-      throw new Error('There is no ID');
+  async getAll(userName) {
+    if (!userName) {
+      throw new Error('There is no user name');
     }
-    const calculations = await Calculation.findById(id);
+    const calculations = await Calculation.find({author: userName});
     return calculations;
   }
  
