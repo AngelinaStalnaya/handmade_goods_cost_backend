@@ -51,7 +51,6 @@ class UserService {
     if (!authData) {
       throw new Error("There is no auth data");
     }
-    console.log(authData)
     const authedUser = await User.findOne({ login: authData.login });
     if (authedUser === null) return authedUser;
     const findUserWithPassword = await compareLoginPasswords(
