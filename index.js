@@ -8,10 +8,9 @@ import userRouter from "./routers/userRouter.js";
 configDotenv();
 
 const app = express();
-// const PORT = 7000 || process.env.PORT;
 
 app.use(cors({
-  origin: 'https://handmade-goods-cost-backend.vercel.app/'
+  origin: 'https://goods-cost-app.vercel.app/'
 }));
 app.use(express.json());
 app.get('/', (req, res) => res.send('Express on Vercel'));
