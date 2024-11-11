@@ -10,9 +10,15 @@ configDotenv();
 const app = express();
 
 app.use(cors({
-  origin: 'https://goods-cost-app.vercel.app/'
+  origin: 'https://goods-cost-app.vercel.app'
 }));
 app.use(express.json());
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "https://goods-cost-app.vercel.app");
+  res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  next();
+})
 app.get('/', (req, res) => res.send('Express on Vercel'));
 app.use("/api", calculationRouter);
 app.use("/auth", userRouter);
